@@ -1,4 +1,7 @@
   # for row in csvreader:
-  #   print(f"Header: {csv_header}")
-  #   pl = (row[1])
-  #   print(int(pl), base=10)
+  #   balance += int(row[1])
+  #   months.append(row[0].split("-"))
+  #   if int(row[1]) > 0:
+  #    profits.append(int(row[1]))
+  #   else:
+  #     losses.append(int(row[1]))
