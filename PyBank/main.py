@@ -21,11 +21,18 @@ with open(csvpath, newline='') as csvfile:
   for row in csvreader:
     balance += int(row[1])
     months.append(row[0].split("-"))
+    if int(row[1]) > 0:
+     profits.append(int(row[1]))
+    else:
+      losses.append(int(row[1]))
 
 
 
   print(f"banance: {balance}")
   print(f"len(months) {len(months)}")
+  print(f"profits sum: {sum(profits)}")
+  print(f"losses:  {sum(losses)}")
+  print(f"balance: {sum(profits) + sum(losses)} ")
 
 
 #     if int(row[1]) > 0:
