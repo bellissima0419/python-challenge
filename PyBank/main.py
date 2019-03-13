@@ -1,7 +1,7 @@
 import csv
 import os
 
-csvpath = os.path.join('.', 'budget_data.csv')
+csvpath = os.path.join('../', 'budget_data.csv')
 
 profit_loss = []
 profits = []
@@ -9,6 +9,7 @@ losses = []
 p_count = 0
 l_count = 0
 balance = 0
+months = []
 
 with open(csvpath, newline='') as csvfile:
   csvreader = csv.reader(csvfile, delimiter=',')
@@ -19,8 +20,12 @@ with open(csvpath, newline='') as csvfile:
 
   for row in csvreader:
     balance += int(row[1])
+    months.append(row[0].split("-"))
+
+
 
   print(f"banance: {balance}")
+  print(f"len(months) {len(months)}")
 
 
 #     if int(row[1]) > 0:
