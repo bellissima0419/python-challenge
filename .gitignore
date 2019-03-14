@@ -1,6 +1,6 @@
 # Byte-compiled / optimized / DLL files
 # ./Test/*
-python-challenge/Test/
+./Test/*
 __pycache__/
 *.py[cod]
 *$py.class
