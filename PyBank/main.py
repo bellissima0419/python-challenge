@@ -12,9 +12,13 @@ with open(csvpath, newline='') as csvfile:
 
   csvreader = csv.reader(csvfile, delimiter=',')
   csv_header = next(csvfile)
-  csv_list = [[row[0], int(row[1])] for row in csvreader]
 
+  # cast the file into a python list making the ProfitLoses an int
+  csv_list = [[row[0], int(row[1])] for row in csvreader]
   print(f"Header: {csv_header}")
+
+  print(f"csv_list: {csv_list[:5]}")
+
 
   for row in csvreader:
 
@@ -29,8 +33,11 @@ for i in range(1, len(csv_list)):
     # print(profit_loss_diff)
 print(profit_loss_diff[:5])
 # print(max(profit_loss_diff[1]))
+
 greatest_profit_increase = max(csv_list, key=lambda x: x[1])
 greatest_profit_decrease = min(csv_list, key=lambda x: x[1])
+
+
 avg = round(sum([x[1] for x in profit_loss_diff])/len(profit_loss_diff),2)
 
 print('avg', {avg})
