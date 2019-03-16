@@ -35,14 +35,29 @@ greatest_profit_decrease = min(profit_loss_diff, key=lambda x: x[1])
 # calculate the average in profit change
 avg = round(sum([x[1] for x in profit_loss_diff]) / len(profit_loss_diff), 2)
 
-# Print the summary of the Financial Analysis
-print()
-print("Financial Analysis")
-print("-------------------------------------------------")
-print(f"Total Months: {len(months)} ")
-print(f"Total: ${balance}")
-print(f"Average Change: ${avg}")
-print(
-    f"Greatest Increase in Profits: {greatest_profit_increase[0]} ({greatest_profit_increase[1]})")
-print(
-    f"Greatest Decrease in Profits: {greatest_profit_decrease[0]} ({greatest_profit_decrease[1]})")
+# Create the summary of the Financial Analysis
+FinancialAnalysis = "Financial Analysis"
+underline = "-------------------------------------------------"
+total_months = f"Total Months: {len(months)}"
+total = f"Total: ${balance}"
+avg_change = f"Average Change: ${avg}"
+greatest_inc_prof = f"Greatest Increase in Profits: {greatest_profit_increase[0]} ({greatest_profit_increase[1]})"
+greatest_dec_prof = f"Greatest Decrease in Profits: {greatest_profit_decrease[0]} ({greatest_profit_decrease[1]})"
+
+summary = [FinancialAnalysis, underline, total_months, total, avg_change,
+           greatest_inc_prof, greatest_dec_prof]
+
+
+def financial_analysis(items):
+    for i in items:
+        print(i)
+
+
+financial_analysis(summary)
+
+# # Open/create file in "write" mode ('w') and add the summary(analysis) to it
+file = './FinancialAnalysis.txt'
+with open(file, 'w') as text:
+
+    for row in summary:
+        text.writelines([row, "\n"])
