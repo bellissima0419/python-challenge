@@ -28,7 +28,7 @@ for i in range(1, len(csv_list)):
     profit_loss_diff.append(
         [csv_list[i][0], csv_list[i][1] - csv_list[i - 1][1]])
 
-# calculate the max increase in profits. Calculation made with lambda on second item on greatest_profit_increase list, thus creating a list that contains both the month the year and the amount
+# calculate the max increase in profits. Calculation made with lambda on second item on the profit_loss_diff list, thus creating a list that contains both the month the year and the amount
 greatest_profit_increase = max(profit_loss_diff, key=lambda x: x[1])
 
 # print(f"greatest_profit_increase: {greatest_profit_increase}")
