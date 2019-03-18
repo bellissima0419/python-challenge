@@ -39,28 +39,50 @@ greatest_profit_decrease = min(profit_loss_diff, key=lambda x: x[1])
 avg = round(sum([x[1] for x in profit_loss_diff]) / len(profit_loss_diff), 2)
 
 # Create the summary of the Financial Analysis
-FinancialAnalysis = "Financial Analysis"
-underline = "-------------------------------------------------"
-total_months = f"Total Months: {len(months)}"
-total = f"Total: ${balance}"
-avg_change = f"Average Change: ${avg}"
-greatest_inc_prof = f"Greatest Increase in Profits: {greatest_profit_increase[0]} ({greatest_profit_increase[1]})"
-greatest_dec_prof = f"Greatest Decrease in Profits: {greatest_profit_decrease[0]} ({greatest_profit_decrease[1]})"
+summary = {
+  "title": "Financial Analysis",
+  "underline": "-------------------------------------------------",
+  "Total Months": f":{len(months)}",
+  "Total": f"${balance}",
+  "Average Change": f"${avg}",
+  "Greatest Increase in Profits": f"{greatest_profit_increase[0]}: {greatest_profit_increase[1]}",
+  "Greatest Decrease in Profits": f"{greatest_profit_decrease[0]}: {greatest_profit_decrease[1]}"
+}
 
-summary = [FinancialAnalysis, underline, total_months, total, avg_change,
-           greatest_inc_prof, greatest_dec_prof]
+
+# FinancialAnalysis = "Financial Analysis"
+# underline = "-------------------------------------------------"
+# total_months = f"Total Months: {len(months)}"
+# total = f"Total: ${balance}"
+# avg_change = f"Average Change: ${avg}"
+# greatest_inc_prof = f"Greatest Increase in Profits: {greatest_profit_increase[0]} ({greatest_profit_increase[1]})"
+# greatest_dec_prof = f"Greatest Decrease in Profits: {greatest_profit_decrease[0]} ({greatest_profit_decrease[1]})"
+
+# summary = [FinancialAnalysis, underline, total_months, total, avg_change,
+#            greatest_inc_prof, greatest_dec_prof]
 
 
-def financial_analysis(items):
-    for i in items:
-        print(i)
+def financial_analysis(dict):
+    for k,v in dict.items():
+      if k == "title" or k == "underline":
+        print(v)
+      else: print(k,v)
 
+print("summary length", len(summary))
 
 financial_analysis(summary)
 
-# # Open/create file in "write" mode ('w') and add the summary(analysis) to it
-file = './FinancialAnalysis.txt'
-with open(file, 'w') as text:
+# # # Open/create file in "write" mode ('w') and add the summary(analysis) to it
+# file1 = './FinancialAnalysis.txt'
+# with open(file1, 'w') as text:
 
-    for row in summary:
-        text.writelines([row, "\n"])
+#     for row in summary:
+#         text.writelines([row, "\n"])
+
+# file2 = './FinancialAnalysis.csv'
+# with open(file2, 'w') as csv_file:
+
+#     for row in summary:
+#       csv_file.writelines(row)
+
+

@@ -4,10 +4,15 @@ import os
 csvpath = os.path.join('./', 'election_data.csv')
 
 total_votes = 0
-canidate_set = set()
+candidate_set = set()
 list_of_candidates = []
 votes_per_candidate = {}
-election_winner  = ""
+winner  = ""
+
+# votes_per_candidate =  {'Khan': 2218231, 'Correy': 704200, 'Li': 492940, "O'Tooley": 105630}
+# list_of_candidates = ['Correy', 'Li', 'Khan', "O'Tooley"]
+
+# winner = max(votes_per_candidate, key=lambda x: votes_per_candidate[x])
 
 with open(csvpath, newline='') as csvfile:
 
@@ -16,16 +21,19 @@ with open(csvpath, newline='') as csvfile:
     print(f"Header: {csv_header}")
 
     for row in csvreader:
-        canidate_set.add(row[2])
+        candidate_set.add(row[2])
         if row[2] in votes_per_candidate:
             votes_per_candidate[row[2]] = votes_per_candidate[row[2]] + 1
         else:
             votes_per_candidate[row[2]] = 1
 
+    print(f"candidate_set: {candidate_set}")
 
-    print(f"votes_per_candidate: {votes_per_candidate}")
-    list_of_candidates = list(canidate_set)
-    print(f"list_of_candidates: {list_of_candidates}")
+    winner = max(votes_per_candidate, key=lambda x: votes_per_candidate[x])
+
+    print(f"Winner: {winner}")
+
+
 
 
     # print(len(list(csvreader)[0:10]))
