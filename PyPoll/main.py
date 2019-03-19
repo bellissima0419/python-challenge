@@ -26,14 +26,15 @@ with open(csvpath, newline='') as csvfile:
         # if the candidate already exists in the dictionary add 1 to the counter,
         # if not, set the counter = 1
         if row[2] in votes_per_candidate:
-            votes_per_candidate[row[2]] = votes_per_candidate[row[2]] + 1
+            # votes_per_candidate[row[2]] = votes_per_candidate[row[2]] + 1
+            votes_per_candidate[row[2]] += 1
         else:
             votes_per_candidate[row[2]] = 1
 
-    # calculate the average of votes per candidate adding this data to a new
+    # calculate the percentage of votes per candidate adding this data to a new
     # dictionary
-    for candidate, votes in votes_per_candidate.items():
-        percentages[candidate] = round((votes / total_votes) * 100, 2)
+for candidate, votes in votes_per_candidate.items():
+    percentages[candidate] = round((votes / total_votes) * 100, 2)
 
     # lambda to calculate the winner with a max function performed on the
     # numeric value of votes in the dictionary
@@ -63,8 +64,6 @@ def poll_results(dict):
     print("-------------------------")
 
 
-# print(f"election_results: {election_results}")
-print()
 name = [k for k, v in election_results["votes_per_candidate"].items()]
 vote_count = [v for k, v in election_results["votes_per_candidate"].items()]
 vote_percentage = [v for k, v in election_results["percentages"].items()]
@@ -79,3 +78,8 @@ with open(output_file, 'w', newline="") as datafile:
     writer.writerows(zipped)
 
 poll_results(election_results)
+
+# =======================================================
+# print()
+# print(f"election_results: {election_results}")
+# print()
