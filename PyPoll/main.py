@@ -79,16 +79,3 @@ with open(output_file, 'w', newline="") as datafile:
     writer.writerows(zipped)
 
 poll_results(election_results)
-
-# =========================================
-# debugging process print statements
-# print(f"zip list: {[t for t in zipped]}")
-# print(f"zipped: {zipped}")
-# print()
-# print(f"name: {name}")
-# print(f"vote_count: {vote_count}")
-# print(f"vote_percentage: {vote_percentage}")
-
-# print(f"name: {name} {type(name[0])}")
-# print(f"vote_count: {vote_count} {type(vote_count[0])}")
-# print(f"vote_percentage: {vote_percentage} {type(vote_percentage[0])}")
