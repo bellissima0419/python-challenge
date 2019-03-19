@@ -5,7 +5,6 @@ csvpath = os.path.join('./', 'election_data.csv')
 
 total_votes = 0
 candidate_set = set()
-list_of_candidates = []
 votes_per_candidate = {}
 winner = ""
 election_results = {}
@@ -40,14 +39,13 @@ with open(csvpath, newline='') as csvfile:
     # numeric value of votes in the dictionary
     winner = max(votes_per_candidate, key=lambda x: votes_per_candidate[x])
 
-    # update the election_results dictionary
-    election_results["total_votes"] = total_votes
-    election_results["candidate_set"] = candidate_set
-    election_results["votes_per_candidate"] = votes_per_candidate
-    election_results["percentages"] = percentages
-    election_results["winner"] = winner
-
-
+# update the election_results dictionary
+election_results["total_votes"] = total_votes
+election_results["candidate_set"] = candidate_set
+election_results["votes_per_candidate"] = votes_per_candidate
+election_results["percentages"] = percentages
+election_results["winner"] = winner
+    # ==============================================================================
 # function to print the report to the terminal
 def poll_results(dict):
     print()
@@ -62,13 +60,32 @@ def poll_results(dict):
     print(f"Winner: {dict['winner']}")
     print("-------------------------")
 
+# print(f"election_results: {election_results}")
+print()
+name = [k for k,v in election_results["votes_per_candidate"].items()]
+vote_count = [v for k,v in election_results["votes_per_candidate"].items()]
+vote_percentage = [v for k,v in election_results["percentages"].items()]
+
+# Open/create file in "write" mode ('w') and add the summary(analysis) to it
+zipped = zip(name, vote_count, vote_percentage)
+output_file = os.path.join('poll_results.csv')
+with open(output_file, 'w', newline="") as datafile:
+
+    writer = csv.writer(datafile)
+    writer.writerow(["name","vote_count","vote_percentage"])
+    writer.writerows(zipped)
 
 poll_results(election_results)
 
-# Open/create file in "write" mode ('w') and add the summary(analysis) to it
-file1 = './poll_results.txt'
-with open(file1, 'w') as text:
-  for k, v in election_results.items():
-    #   if k == "title" or k == "underline":
-    text.writelines([k,v, "\n"])
-    #   else: text.writelines([k,v, "\n"])
+# =========================================
+# debugging process print statements
+# print(f"zip list: {[t for t in zipped]}")
+# print(f"zipped: {zipped}")
+# print()
+# print(f"name: {name}")
+# print(f"vote_count: {vote_count}")
+# print(f"vote_percentage: {vote_percentage}")
+
+# print(f"name: {name} {type(name[0])}")
+# print(f"vote_count: {vote_count} {type(vote_count[0])}")
+# print(f"vote_percentage: {vote_percentage} {type(vote_percentage[0])}")
