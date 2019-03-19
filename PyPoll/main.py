@@ -37,7 +37,7 @@ with open(csvpath, newline='') as csvfile:
 
     # lambda to calculate the winner with a max function performed on the
     # numeric value of votes in the dictionary
-    winner = max(votes_per_candidate, key=lambda x: votes_per_candidate[x])
+winner = max(votes_per_candidate, key=lambda x: votes_per_candidate[x])
 
 # update the election_results dictionary
 election_results["total_votes"] = total_votes
