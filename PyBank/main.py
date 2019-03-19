@@ -33,9 +33,9 @@ for i in range(1, len(csv_list)):
 # contains both the month the year and the amount
 greatest_profit_increase = max(profit_loss_diff, key=lambda x: x[1])
 
-
 # calculate the max decrease in profits
 greatest_profit_decrease = min(profit_loss_diff, key=lambda x: x[1])
+
 # calculate the average in profit change
 avg = round(sum([x[1] for x in profit_loss_diff]) / len(profit_loss_diff), 2)
 
