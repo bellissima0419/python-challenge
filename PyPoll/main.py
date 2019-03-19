@@ -31,13 +31,13 @@ with open(csvpath, newline='') as csvfile:
         else:
             votes_per_candidate[row[2]] = 1
 
-    # calculate the percentage of votes per candidate adding this data to a new
-    # dictionary
+# calculate the percentage of votes per candidate adding this data to a
+# new dictionary
 for candidate, votes in votes_per_candidate.items():
     percentages[candidate] = round((votes / total_votes) * 100, 2)
 
-    # lambda to calculate the winner with a max function performed on the
-    # numeric value of votes in the dictionary
+# lambda to calculate the winner with a max function performed on
+# thenumeric value of votes in the dictionary
 winner = max(votes_per_candidate, key=lambda x: votes_per_candidate[x])
 
 # update the election_results dictionary
@@ -46,10 +46,9 @@ election_results["candidate_set"] = candidate_set
 election_results["votes_per_candidate"] = votes_per_candidate
 election_results["percentages"] = percentages
 election_results["winner"] = winner
-# ==============================================================================
+
+
 # function to print the report to the terminal
-
-
 def poll_results(dict):
     print()
     print("Election Results")
@@ -63,13 +62,15 @@ def poll_results(dict):
     print(f"Winner: {dict['winner']}")
     print("-------------------------")
 
-
+# data cleaning step 1: save relevant report data  into lists
 name = [k for k, v in election_results["votes_per_candidate"].items()]
 vote_count = [v for k, v in election_results["votes_per_candidate"].items()]
 vote_percentage = [v for k, v in election_results["percentages"].items()]
 
-# Open/create file in "write" mode ('w') and add the summary(analysis) to it
+# data cleaning step 2: zip the three lists to export them into csv file
 zipped = zip(name, vote_count, vote_percentage)
+
+# Open/create file in "write" mode ('w') and add the summary(analysis) to it
 output_file = os.path.join('poll_results.csv')
 with open(output_file, 'w', newline="") as datafile:
 
