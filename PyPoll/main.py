@@ -19,7 +19,7 @@ with open(csvpath, newline='') as csvfile:
         candidate_set.add(row[2])
         # check if all rows have a voter id to avoid giving a candidate a vote
         # only based on a row count.
-        if row[0]:
+        if len(row) == 3:
             total_votes += 1
 
         # build a dictionary with the candidate name and a counter
