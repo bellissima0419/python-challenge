@@ -43,11 +43,11 @@ avg = round(sum([x[1] for x in profit_loss_diff]) / len(profit_loss_diff), 2)
 summary = {
     "title": "Financial Analysis",
     "underline": "-------------------------------------------------",
-    "Total Months": f":{len(months)}",
+    "Total Months": f"{len(months)}",
     "Total": f"${balance}",
     "Average Change": f"${avg}",
-    "Greatest Increase in Profits": f"{greatest_profit_increase[0]}: {greatest_profit_increase[1]}",
-    "Greatest Decrease in Profits": f"{greatest_profit_decrease[0]}: {greatest_profit_decrease[1]}"
+    "Greatest Increase in Profits": f"{greatest_profit_increase[0]} {greatest_profit_increase[1]}",
+    "Greatest Decrease in Profits": f"{greatest_profit_decrease[0]} {greatest_profit_decrease[1]}"
 }
 
 
@@ -57,7 +57,7 @@ def financial_analysis(dict):
         if k == "title" or k == "underline":
             print(v)
         else:
-            print(k, v)
+            print(f"{k}: {v}")
 
 
 financial_analysis(summary)
@@ -69,7 +69,7 @@ with open(file1, 'w') as text:
         if k == "title" or k == "underline":
             text.writelines([v, "\n"])
         else:
-            text.writelines([k, v, "\n"])
+            text.writelines([k,":", " ", v, "\n"])
 
 # file2 = './FinancialAnalysis.csv'
 # with open(file2, 'w') as csv_file:
