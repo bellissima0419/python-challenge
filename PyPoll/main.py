@@ -18,19 +18,26 @@ with open(csvpath, newline='') as csvfile:
 
     for row in csvreader:
         candidate_set.add(row[2])
+        # check if all rows have a voter id to avoid giving a candidate a vote only based on a row count.
         if row[0]:
             total_votes += 1
 
+        # build a dictionary with the candidate name and a counter
+        # if the candidate already exists in the dictionary add 1 to the counter,
+        # if not, set the counter = 1
         if row[2] in votes_per_candidate:
             votes_per_candidate[row[2]] = votes_per_candidate[row[2]] + 1
         else:
             votes_per_candidate[row[2]] = 1
 
+    # calculate the average of votes per candidate adding this data to a new dictionary
     for candidate, votes in votes_per_candidate.items():
         percentages[candidate] = round((votes / total_votes) * 100, 2)
 
+    # lambda to calculate the winner with a max function performed on the numeric value of votes in the dictionary
     winner = max(votes_per_candidate, key=lambda x: votes_per_candidate[x])
 
+    # update the election_results dictionary
     election_results["total_votes"] = total_votes
     election_results["candidate_set"] = candidate_set
     election_results["votes_per_candidate"] = votes_per_candidate
@@ -38,6 +45,7 @@ with open(csvpath, newline='') as csvfile:
     election_results["winner"] = winner
 
 
+# function to print the report to the terminal
 def poll_results(dict):
     print()
     print("Election Results")
