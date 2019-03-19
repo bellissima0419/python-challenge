@@ -45,8 +45,10 @@ election_results["candidate_set"] = candidate_set
 election_results["votes_per_candidate"] = votes_per_candidate
 election_results["percentages"] = percentages
 election_results["winner"] = winner
-    # ==============================================================================
+# ==============================================================================
 # function to print the report to the terminal
+
+
 def poll_results(dict):
     print()
     print("Election Results")
@@ -60,11 +62,12 @@ def poll_results(dict):
     print(f"Winner: {dict['winner']}")
     print("-------------------------")
 
+
 # print(f"election_results: {election_results}")
 print()
-name = [k for k,v in election_results["votes_per_candidate"].items()]
-vote_count = [v for k,v in election_results["votes_per_candidate"].items()]
-vote_percentage = [v for k,v in election_results["percentages"].items()]
+name = [k for k, v in election_results["votes_per_candidate"].items()]
+vote_count = [v for k, v in election_results["votes_per_candidate"].items()]
+vote_percentage = [v for k, v in election_results["percentages"].items()]
 
 # Open/create file in "write" mode ('w') and add the summary(analysis) to it
 zipped = zip(name, vote_count, vote_percentage)
@@ -72,7 +75,7 @@ output_file = os.path.join('poll_results.csv')
 with open(output_file, 'w', newline="") as datafile:
 
     writer = csv.writer(datafile)
-    writer.writerow(["name","vote_count","vote_percentage"])
+    writer.writerow(["name", "vote_count", "vote_percentage"])
     writer.writerows(zipped)
 
 poll_results(election_results)
