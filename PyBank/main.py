@@ -68,21 +68,24 @@ def financial_analysis(dict):
         print(v)
       else: print(k,v)
 
-print("summary length", len(summary))
+# print("summary length", len(summary))
 
 financial_analysis(summary)
 
-# # # Open/create file in "write" mode ('w') and add the summary(analysis) to it
-# file1 = './FinancialAnalysis.txt'
-# with open(file1, 'w') as text:
 
-#     for row in summary:
-#         text.writelines([row, "\n"])
+
+# Open/create file in "write" mode ('w') and add the summary(analysis) to it
+file1 = './FinancialAnalysis.txt'
+with open(file1, 'w') as text:
+  for k, v in summary.items():
+      if k == "title" or k == "underline":
+        text.writelines([v, "\n"])
+      else: text.writelines([k,v, "\n"])
 
 # file2 = './FinancialAnalysis.csv'
 # with open(file2, 'w') as csv_file:
 
-#     for row in summary:
-#       csv_file.writelines(row)
-
-
+#   for k, v in summary.items():
+#     if k == "title" or k == "underline":
+#         csv_file.writelines([v, "\n"])
+#     else: csv_file.writelines([k,v, "\n"])
