@@ -32,10 +32,10 @@ for i in range(1, len(csv_list)):
 # second item on the profit_loss_diff list, thus creating a list that
 # contains both the month the year and the amount
 greatest_profit_increase = max(profit_loss_diff, key=lambda x: x[1])
-
+# print(f"greatest_profit_increase: {greatest_profit_increase}")
 # calculate the max decrease in profits
 greatest_profit_decrease = min(profit_loss_diff, key=lambda x: x[1])
-
+# print(f"greatest_profit_decrease: {greatest_profit_decrease}")
 # calculate the average in profit change
 avg = round(sum([x[1] for x in profit_loss_diff]) / len(profit_loss_diff), 2)
 
