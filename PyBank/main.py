@@ -8,7 +8,7 @@ balance = 0
 months = []
 csv_list = []
 
-with open(csvpath, newline='') as csvfile:
+with open(csvpath, 'r', newline='') as csvfile:
 
     csvreader = csv.reader(csvfile, delimiter=',')
     csv_header = next(csvfile)
@@ -22,7 +22,7 @@ with open(csvpath, newline='') as csvfile:
     # cast the file into a python list making the ProfitLoses an int
         csv_list.append([row[0], int(row[1])])
 
-
+# print(f"months: {months}")
 for i in range(1, len(csv_list)):
         # calculate the  profit change and append it along with its  month
     profit_loss_diff.append(
@@ -46,11 +46,11 @@ summary = {
     "Total Months": f"{len(months)}",
     "Total": f"${balance}",
     "Average Change": f"${avg}",
-    "Greatest Increase in Profits": f"{greatest_profit_increase[0]} {greatest_profit_increase[1]}",
-    "Greatest Decrease in Profits": f"{greatest_profit_decrease[0]} {greatest_profit_decrease[1]}"
+    "Greatest Increase in Profits": f"{greatest_profit_increase[0]} ({greatest_profit_increase[1]})",
+    "Greatest Decrease in Profits": f"{greatest_profit_decrease[0]} ({greatest_profit_decrease[1]})"
 }
 
-
+# function that prints the report to the terminal
 def financial_analysis(dict):
     print()
     for k, v in dict.items():
@@ -59,8 +59,17 @@ def financial_analysis(dict):
         else:
             print(f"{k}: {v}")
 
-
+# run the function that prints report to the terminal
 financial_analysis(summary)
+# terminal print out matches the homework README
+
+# Financial Analysis
+# -------------------------------------------------
+# Total Months: 86
+# Total: $38382578
+# Average Change: $-2315.12
+# Greatest Increase in Profits: Feb-2012 (1926159)
+# Greatest Decrease in Profits: Sep-2013 (-2196167)
 
 # Open/create file in "write" mode ('w') and add the summary(analysis) to it
 file1 = './FinancialAnalysis.txt'
@@ -71,10 +80,4 @@ with open(file1, 'w') as text:
         else:
             text.writelines([k,":", " ", v, "\n"])
 
-# file2 = './FinancialAnalysis.csv'
-# with open(file2, 'w') as csv_file:
 
-#   for k, v in summary.items():
-#     if k == "title" or k == "underline":
-#         csv_file.writelines([v, "\n"])
-#     else: csv_file.writelines([k,v, "\n"])
